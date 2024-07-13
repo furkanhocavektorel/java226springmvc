@@ -9,5 +9,3 @@ spring:
   jpa:
     hibarnate:
       ddl-auto: update
-      show-sql: true
-      format-sql: true
