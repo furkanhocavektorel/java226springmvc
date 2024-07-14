@@ -5,6 +5,8 @@ import com.vektorel.firstproject.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 /*
 * service katmanları @Service ile işaretlenerek spring'e
 * bunun bir service katmanı olduğu bilgisi geçilmeli.
@@ -55,5 +57,20 @@ public class CustomerService {
         customerRepository.save(customer);
     }
 
+    public boolean login(String username, String password) {
+
+        Optional<Customer> customer=customerRepository.findOptionalByUsername(username);
+
+        if (customer.isEmpty()){
+            return false;
+        }
+        if (customer.get().getPassword().equals(password)){
+            return true;
+        }else {
+            return false;
+        }
+
+
+    }
 
 }

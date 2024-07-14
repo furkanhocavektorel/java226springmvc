@@ -17,39 +17,22 @@ public class LoginRegisterController {
 
 
     @GetMapping("")
-    public ModelAndView registerPage(){
+    public ModelAndView register(){
         ModelAndView modelAndView= new ModelAndView();
         modelAndView.setViewName("index");
         return modelAndView;
     }
 
-    @GetMapping("login")
-    public ModelAndView loginPage(){
-        ModelAndView modelAndView= new ModelAndView();
-        modelAndView.setViewName("login");
-        return modelAndView;
-    }
-
-    @PostMapping("register-button")
-    public Object registerButton(String name,
-                               String surname,
-                               String username,
-                               String email,
-                               String password){
-
-        System.out.println(name);
-        System.out.println(surname);
-        System.out.println(username);
-        System.out.println(email);
-        System.out.println(password);
+    @PostMapping("")
+    public Object register(String name,
+                                 String surname,
+                                 String username,
+                                 String email,
+                                 String password){
 
         customerService.save(name,surname,username,email,password);
 
-
         //alınan veriler db ye kaydedilmeli
-
-
-
         //1. yöntem
   /*      ModelAndView modelAndView= new ModelAndView();
         modelAndView.setViewName("login");
@@ -58,8 +41,28 @@ public class LoginRegisterController {
         //2.yöntem
         return "redirect:/login";
 
+    }
+
+
+    @GetMapping("login")
+    public ModelAndView login(){
+        ModelAndView modelAndView= new ModelAndView();
+        modelAndView.setViewName("login");
+        return modelAndView;
+    }
+    @PostMapping("login")
+    public Object login (String username,String password){
+        System.out.println(username);
+        boolean bool=customerService.login(username,password);
+
+        if (bool){
+            return "redirect:/home";
+        }else {
+            return "redirect:/login";
+        }
 
     }
+
 
 
 
