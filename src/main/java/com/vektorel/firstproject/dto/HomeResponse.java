@@ -9,4 +9,6 @@ import java.util.List;
 @Setter
 public class HomeResponse {
    private List<ProductResponseDto> products;
+   private String headerOne;
+   private String headerTwo;
 }

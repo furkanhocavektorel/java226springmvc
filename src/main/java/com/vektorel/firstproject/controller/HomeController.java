@@ -21,6 +21,10 @@ public class HomeController {
         HomeResponse response= new HomeResponse();
 
         response.setProducts(productService.productResponseForHomePage());
+        response.setHeaderOne("E-Ticaret");
+        response.setHeaderTwo("Ürünler");
+
+
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
         modelAndView.addObject("model", response);

@@ -52,7 +52,7 @@ public class ProductService {
         for (Product p : products){
             ProductResponseDto dto= new ProductResponseDto();
 
-            dto.setAd(p.getName());
+            dto.setAd(p.getName()+ "-" +p.getDescription());
             dto.setFiyat(p.getPrice());
 
             responses.add(dto);
