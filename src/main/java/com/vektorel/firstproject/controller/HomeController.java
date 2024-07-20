@@ -7,7 +7,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping("home")
 public class HomeController {
-    // baseurl /home
+
     @GetMapping("")
     public ModelAndView homePage(){
         ModelAndView modelAndView = new ModelAndView();

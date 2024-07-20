@@ -1,10 +1,13 @@
 package com.vektorel.firstproject.service;
 
+import com.vektorel.firstproject.entity.Category;
 import com.vektorel.firstproject.entity.Customer;
+import com.vektorel.firstproject.repository.CategoryRepository;
 import com.vektorel.firstproject.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 /*
@@ -29,6 +32,13 @@ public class CustomerService {
     // 2.yöntem
     //@Autowired
     CustomerRepository customerRepository;
+    CategoryService categoryService;
+
+    // bir servis sadece kendi repositorysine istek atmalı
+    // başka repo dan bir şey gerekiyor ise
+    // o reponun servisine giderek metot oraya taşınmalı.
+    //         !!!--- YANLIŞ YAKLAŞIM ---!!!
+    //CategoryRepository categoryRepository;
 
     // 1.yöntem
     // constractor injection
@@ -59,6 +69,7 @@ public class CustomerService {
 
     public boolean login(String username, String password) {
 
+
         Optional<Customer> customer=customerRepository.findOptionalByUsername(username);
 
         if (customer.isEmpty()){
@@ -72,5 +83,11 @@ public class CustomerService {
 
 
     }
+
+    // ÖRNEK DOĞRU METOT
+  /*  public void test(){
+
+       List<Category> list= categoryService.getAllCategory();
+    }*/
 
 }
