@@ -1,5 +1,6 @@
 package com.vektorel.firstproject.service;
 
+import com.vektorel.firstproject.dto.ProductResponseDto;
 import com.vektorel.firstproject.dto.ProductSaveRequestDto;
 import com.vektorel.firstproject.entity.Category;
 import com.vektorel.firstproject.entity.Product;
@@ -8,6 +9,8 @@ import com.vektorel.firstproject.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,5 +41,23 @@ public class ProductService {
         repository.save(product);
 
         return true;
+    }
+
+
+    public List<ProductResponseDto> productResponseForHomePage(){
+        List<ProductResponseDto> responses= new ArrayList<>();
+
+        List<Product> products= repository.findAll();
+
+        for (Product p : products){
+            ProductResponseDto dto= new ProductResponseDto();
+
+            dto.setAd(p.getName());
+            dto.setFiyat(p.getPrice());
+
+            responses.add(dto);
+        }
+
+        return responses;
     }
 }
