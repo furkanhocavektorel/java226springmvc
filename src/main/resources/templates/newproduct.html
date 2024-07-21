@@ -39,7 +39,7 @@
                         <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/newproduct">
+                        <a class="nav-link" href="/product/newproduct">
                             New Product
                         </a>
                     </li>
@@ -74,7 +74,7 @@
     <!-- end header section -->
 
 </div>
-<form method="post" action="/product/newproduct">
+<form method="post" action="/product/newproduct" enctype="multipart/form-data">
     <div class="mb-3">
         <label class="form-label">Product Name</label>
         <input type="text" name="name" class="form-control"  placeholder="Category Name">
@@ -94,6 +94,10 @@
     <div class="mb-3">
         <label class="form-label">Category Id</label>
         <input type="text" name="categoryId" class="form-control"  placeholder="Category Id">
+    </div>
+
+    <div>
+        <input type="file" name="productImage">
     </div>
     <button type="submit" class="btn btn-primary">kaydet</button>
 

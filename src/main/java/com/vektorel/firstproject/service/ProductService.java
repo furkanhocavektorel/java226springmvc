@@ -6,6 +6,7 @@ import com.vektorel.firstproject.entity.Category;
 import com.vektorel.firstproject.entity.Product;
 import com.vektorel.firstproject.repository.CategoryRepository;
 import com.vektorel.firstproject.repository.ProductRepository;
+import com.vektorel.firstproject.util.MultiPart;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ public class ProductService {
 
     private final ProductRepository repository;
     private final CategoryService categoryService;
+    private final MultiPart multiPart;
 
     public boolean save(ProductSaveRequestDto dto){
 
@@ -29,12 +31,16 @@ public class ProductService {
             return false;
         }
 
+        String url=multiPart.multipartToUrl(dto.getProductImage());
+
+
         Product product= Product.builder()
                 .price(dto.getPrice())
                 .stock(dto.getStock())
                 .name(dto.getName())
                 .description(dto.getDescription())
                 .category(category.get())
+                .photoUrl(url)
                 .build();
 
 
@@ -54,6 +60,7 @@ public class ProductService {
 
             dto.setAd(p.getName()+ "-" +p.getDescription());
             dto.setFiyat(p.getPrice());
+            dto.setUrl(p.getPhotoUrl());
 
             responses.add(dto);
         }

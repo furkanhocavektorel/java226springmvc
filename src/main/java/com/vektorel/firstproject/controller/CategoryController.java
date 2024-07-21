@@ -20,7 +20,7 @@ public class CategoryController {
     public Object createCategory(CategorySaveRequestDto dto){
         boolean b=categoryService.save(dto);
         if (b){
-            return "redirect:/newproduct";
+            return "redirect:/product/newproduct";
         }else {
             return "redirect:/category/newcategory";
         }
